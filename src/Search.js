@@ -61,6 +61,13 @@ export default function Search() {
           </div>
         </div>
       </form>
+      <button
+        type="submit"
+        class="btn btn-secondary"
+        id="current-location-button"
+      >
+        Current
+      </button>
     </div>
   );
 
@@ -82,10 +89,16 @@ export default function Search() {
                   alt={weather.description}
                 />
                 <div className="float-left">
-                  <span className="current-temperature">
+                  <strong className="current-temperature">
                     {weather.temperature}
+                  </strong>
+                  <span class="temperature-scale" id="celsius-scale">
+                    °C
                   </span>
-                  <span className="temperature-scale">°C</span>
+                  <span> | </span>
+                  <span class="temperature-scale" id="fahrenheit-scale">
+                    °F
+                  </span>
                 </div>
               </div>
             </div>
