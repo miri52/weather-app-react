@@ -79,6 +79,7 @@ export default function Search() {
         {form}
         <div>
           <h1>{weather.currentCity}</h1>
+          <p id="last-updated">Last updated: </p>
           <h2>Now</h2>
           <div className="row">
             <div className="col">
@@ -92,18 +93,18 @@ export default function Search() {
                   <strong className="current-temperature">
                     {weather.temperature}
                   </strong>
-                  <span class="temperature-scale" id="celsius-scale">
+                  <span className="temperature-scale" id="celsius-scale">
                     °C
                   </span>
                   <span> | </span>
-                  <span class="temperature-scale" id="fahrenheit-scale">
+                  <span className="temperature-scale" id="fahrenheit-scale">
                     °F
                   </span>
                 </div>
               </div>
             </div>
             <div className="col">
-              <p>
+              <p className="proverb-section">
                 <span className="proverb">
                   Turn your face to the sun and the shadows fall behind you.
                   <br />
@@ -118,6 +119,48 @@ export default function Search() {
               <li>Wind: {weather.wind} km/h</li>
               <li>Humidity: {weather.humidity}%</li>
             </ul>
+          </div>
+          <div className="row" id="forecast">
+            <div className="col next-hours">
+              <h3 className="time">15:00</h3>
+              <img className="weather-icons" src="" alt="" />
+              <div className="temperature">
+                <span className="max-temperature">7°</span>
+                <span className="min-temperature">5°</span>
+              </div>
+            </div>
+            <div className="col next-hours">
+              <h3 className="time">15:00</h3>
+              <img className="weather-icons" src="" alt="" />
+              <div className="temperature">
+                <span className="max-temperature">7°</span>
+                <span className="min-temperature">5°</span>
+              </div>
+            </div>
+            <div className="col next-hours">
+              <h3 className="time">15:00</h3>
+              <img className="weather-icons" src="" alt="" />
+              <div className="temperature">
+                <span className="max-temperature">7°</span>
+                <span className="min-temperature">5°</span>
+              </div>
+            </div>
+            <div className="col next-hours">
+              <h3 className="time">15:00</h3>
+              <img className="weather-icons" src="" alt="" />
+              <div className="temperature">
+                <span className="max-temperature">7°</span>
+                <span className="min-temperature">5°</span>
+              </div>
+            </div>
+            <div className="col next-hours">
+              <h3 className="time">15:00</h3>
+              <img className="weather-icons" src="" alt="" />
+              <div className="temperature">
+                <span className="max-temperature">7°</span>
+                <span className="min-temperature">5°</span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
