@@ -3,8 +3,6 @@ import axios from "axios";
 
 import "./Search.css";
 
-let apiKey = "f39b4d69b61752ac1179fb7a3b6a8e55";
-
 export default function Search() {
   let [isSubmitted, setIsSubmitted] = useState(false);
   let [city, setCity] = useState("");
@@ -45,10 +43,33 @@ export default function Search() {
     });
     setDate(formatDate(response.data.dt * 1000));
   }
+  let apiKey = "f39b4d69b61752ac1179fb7a3b6a8e55";
+  let apiUrl = "https://api.openweathermap.org/data/2.5/";
+
+  function getCityApiUrl(cityInput) {
+    return `${apiUrl}weather?q=${cityInput}&appid=${apiKey}&units=metric`;
+  }
+
+  function getGeoApiUrl(lat, lon) {
+    return `${apiUrl}weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`;
+  }
+
+  function showPosition(position) {
+    let url = getGeoApiUrl(position.coords.latitude, position.coords.longitude);
+    axios.get(url).then(showGeoCurrentWeather);
+  }
+
+  function showGeoCurrentWeather(response) {
+    showWeather(response);
+  }
+
+  function getCurrentPosition() {
+    navigator.geolocation.getCurrentPosition(showPosition);
+  }
 
   function handleSubmit(event) {
     event.preventDefault();
-    let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+    let url = getCityApiUrl(city);
     axios
       .get(url)
       .then(showWeather)
@@ -86,6 +107,7 @@ export default function Search() {
         </div>
       </form>
       <button
+        onClick={getCurrentPosition}
         type="submit"
         class="btn btn-secondary"
         id="current-location-button"
