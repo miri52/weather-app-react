@@ -9,6 +9,29 @@ export default function Search() {
   let [isSubmitted, setIsSubmitted] = useState(false);
   let [city, setCity] = useState("");
   let [weather, setWeather] = useState("");
+  let [date, setDate] = useState("");
+
+  function formatDate(timestamp) {
+    let now = new Date(timestamp);
+    let days = [
+      "Sunday",
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday",
+    ];
+    let day = days[now.getDay()];
+    return `${day} ${formatHours(timestamp)}`;
+  }
+
+  function formatHours(timestamp) {
+    let now = new Date(timestamp);
+    let hours = now.getHours();
+    let minutes = (now.getMinutes() < 10 ? "0" : "") + now.getMinutes();
+    return `${hours}:${minutes}`;
+  }
 
   function showWeather(response) {
     setIsSubmitted(true);
@@ -20,6 +43,7 @@ export default function Search() {
       description: response.data.weather[0].description,
       iconUrl: `https://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`,
     });
+    setDate(formatDate(response.data.dt * 1000));
   }
 
   function handleSubmit(event) {
@@ -71,6 +95,17 @@ export default function Search() {
     </div>
   );
 
+  let forecast = (
+    <div className="col next-hours">
+      <h3 className="time">15:00</h3>
+      <img className="weather-icons" src="" alt="" />
+      <div className="temperature">
+        <span className="max-temperature">7°</span>
+        <span className="min-temperature">5°</span>
+      </div>
+    </div>
+  );
+
   if (!isSubmitted) {
     return <div className="Search">{form}</div>;
   } else {
@@ -79,7 +114,7 @@ export default function Search() {
         {form}
         <div>
           <h1>{weather.currentCity}</h1>
-          <p id="last-updated">Last updated: </p>
+          <p id="last-updated">Last updated: {date} </p>
           <h2>Now</h2>
           <div className="row">
             <div className="col">
@@ -121,46 +156,11 @@ export default function Search() {
             </ul>
           </div>
           <div className="row" id="forecast">
-            <div className="col next-hours">
-              <h3 className="time">15:00</h3>
-              <img className="weather-icons" src="" alt="" />
-              <div className="temperature">
-                <span className="max-temperature">7°</span>
-                <span className="min-temperature">5°</span>
-              </div>
-            </div>
-            <div className="col next-hours">
-              <h3 className="time">15:00</h3>
-              <img className="weather-icons" src="" alt="" />
-              <div className="temperature">
-                <span className="max-temperature">7°</span>
-                <span className="min-temperature">5°</span>
-              </div>
-            </div>
-            <div className="col next-hours">
-              <h3 className="time">15:00</h3>
-              <img className="weather-icons" src="" alt="" />
-              <div className="temperature">
-                <span className="max-temperature">7°</span>
-                <span className="min-temperature">5°</span>
-              </div>
-            </div>
-            <div className="col next-hours">
-              <h3 className="time">15:00</h3>
-              <img className="weather-icons" src="" alt="" />
-              <div className="temperature">
-                <span className="max-temperature">7°</span>
-                <span className="min-temperature">5°</span>
-              </div>
-            </div>
-            <div className="col next-hours">
-              <h3 className="time">15:00</h3>
-              <img className="weather-icons" src="" alt="" />
-              <div className="temperature">
-                <span className="max-temperature">7°</span>
-                <span className="min-temperature">5°</span>
-              </div>
-            </div>
+            {forecast}
+            {forecast}
+            {forecast}
+            {forecast}
+            {forecast}
           </div>
         </div>
       </div>
