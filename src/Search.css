@@ -1,0 +1,15 @@
+ul {
+  list-style-type: none;
+}
+li {
+  margin: 5px 0;
+}
+
+li::first-letter {
+  text-transform: capitalize;
+}
+
+.city {
+  font-weight: bold;
+  font-size: 34px;
+}
