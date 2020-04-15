@@ -1,15 +1,40 @@
+input {
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+  height: 40px;
+}
+
+h2 {
+  color: #138496;
+}
+
 ul {
   list-style-type: none;
-}
-li {
-  margin: 5px 0;
+  padding-left: 0;
 }
 
 li::first-letter {
   text-transform: capitalize;
 }
 
-.city {
-  font-weight: bold;
-  font-size: 34px;
+#search-form {
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
+
+.current-temperature {
+  font-size: 56px;
+}
+
+.weather-icon-now {
+  width: 80px;
+  height: 80px;
+}
+
+.proverb {
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.proverb-author {
+  font-size: 15px;
 }

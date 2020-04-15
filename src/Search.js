@@ -3,6 +3,8 @@ import axios from "axios";
 
 import "./Search.css";
 
+let apiKey = "f39b4d69b61752ac1179fb7a3b6a8e55";
+
 export default function Search() {
   let [isSubmitted, setIsSubmitted] = useState(false);
   let [city, setCity] = useState("");
@@ -22,7 +24,6 @@ export default function Search() {
 
   function handleSubmit(event) {
     event.preventDefault();
-    let apiKey = "f39b4d69b61752ac1179fb7a3b6a8e55";
     let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
     axios
       .get(url)
@@ -37,34 +38,75 @@ export default function Search() {
   }
 
   let form = (
-    <form onSubmit={handleSubmit}>
-      <input
-        type="search"
-        onChange={updateCity}
-        placeholder="Enter a city"
-        autoComplete="off"
-        autoFocus="on"
-      />
-      <input type="submit" value="Search" />
-    </form>
+    <div>
+      <form onSubmit={handleSubmit} id="search-form" className="float-left">
+        <div className="form-row align-items-center">
+          <div className="col-auto">
+            <input
+              onChange={updateCity}
+              type="text"
+              className="form-control"
+              placeholder="Enter a city"
+              autoComplete="off"
+              autoFocus="on"
+              id="search-city-input"
+            />
+          </div>
+          <div className="col-auto">
+            <input
+              type="submit"
+              value="Search"
+              className="form-control btn btn-info"
+            />
+          </div>
+        </div>
+      </form>
+    </div>
   );
 
   if (!isSubmitted) {
-    return form;
+    return <div className="Search">{form}</div>;
   } else {
     return (
-      <div>
+      <div className="Search">
         {form}
-        <ul>
-          <li className="city">{weather.currentCity}</li>
-          <li>{weather.temperature}°C</li> <li>Wind: {weather.wind} km/h</li>
-          <li>Humidity: {weather.humidity}%</li>
-          <li>{weather.description}</li>
-          <li>
-            {" "}
-            <img src={weather.iconUrl} alt={weather.description} />
-          </li>
-        </ul>
+        <div>
+          <h1>{weather.currentCity}</h1>
+          <h2>Now</h2>
+          <div className="row">
+            <div className="col">
+              <div className="clearfix">
+                <img
+                  className="float-left weather-icon-now"
+                  src={weather.iconUrl}
+                  alt={weather.description}
+                />
+                <div className="float-left">
+                  <span className="current-temperature">
+                    {weather.temperature}
+                  </span>
+                  <span className="temperature-scale">°C</span>
+                </div>
+              </div>
+            </div>
+            <div className="col">
+              <p>
+                <span className="proverb">
+                  Turn your face to the sun and the shadows fall behind you.
+                  <br />
+                </span>
+                <span className="proverb-author">-Maori proverb</span>
+              </p>
+            </div>
+          </div>
+          <div>
+            <ul>
+              <li id="weather-description">{weather.description}</li>
+              <li>Wind: {weather.wind} km/h</li>
+              <li>Humidity: {weather.humidity}%</li>
+            </ul>
+          </div>
+        </div>
       </div>
     );
   }
