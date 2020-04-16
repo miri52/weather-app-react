@@ -1,13 +1,13 @@
 import React from "react";
 import "./App.css";
-import Search from "./Search";
+import Weather from "./Weather";
 
 function App() {
   return (
     <div className="App">
       <div className="container">
         <section className="wireframe">
-          <Search />
+          <Weather />
         </section>
         <p class="open-source">
           <a
