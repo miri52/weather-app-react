@@ -113,6 +113,7 @@ export default function Weather() {
     let mainDescription = response.data.weather[0].main;
     showProverb(mainDescription.toLowerCase());
   }
+
   let apiKey = "f39b4d69b61752ac1179fb7a3b6a8e55";
   let apiUrl = "https://api.openweathermap.org/data/2.5/";
 
@@ -179,7 +180,7 @@ export default function Weather() {
       <button
         onClick={getCurrentPosition}
         type="submit"
-        class="btn btn-secondary"
+        className="btn btn-secondary"
         id="current-location-button"
       >
         Current
