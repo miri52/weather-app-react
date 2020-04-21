@@ -200,10 +200,10 @@ export default function Weather() {
   );
 
   if (!isSubmitted) {
-    return <div className="Search">{form}</div>;
+    return <div className="Weather">{form}</div>;
   } else {
     return (
-      <div className="Search">
+      <div className="Weather">
         {form}
         <div>
           <h1>{weather.currentCity}</h1>
