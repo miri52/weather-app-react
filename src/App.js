@@ -9,7 +9,7 @@ function App() {
         <section className="wireframe">
           <Weather />
         </section>
-        <p class="open-source">
+        <p className="open-source">
           <a
             href="https://github.com/miri52/weather-app-react"
             rel="noopener noreferrer"

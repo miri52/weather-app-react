@@ -1,15 +1,13 @@
 import React, { useState } from "react";
 import axios from "axios";
-
+import FormattedDate from "./FormattedDate";
 import "./Weather.css";
 
 export default function Weather() {
-  let [isSubmitted, setIsSubmitted] = useState(false);
-  let [city, setCity] = useState("");
-  let [weather, setWeather] = useState("");
-  let [date, setDate] = useState("");
-  let [saying, setSaying] = useState("");
-  let [author, setAuthor] = useState("");
+  const [city, setCity] = useState("");
+  const [weather, setWeather] = useState({ isSubmitted: false });
+  const [saying, setSaying] = useState("");
+  const [author, setAuthor] = useState("");
 
   let proverbs = {
     snow: {
@@ -76,39 +74,17 @@ export default function Weather() {
     }
   }
 
-  function formatDate(timestamp) {
-    let now = new Date(timestamp);
-    let days = [
-      "Sunday",
-      "Monday",
-      "Tuesday",
-      "Wednesday",
-      "Thursday",
-      "Friday",
-      "Saturday",
-    ];
-    let day = days[now.getDay()];
-    return `${day} ${formatHours(timestamp)}`;
-  }
-
-  function formatHours(timestamp) {
-    let now = new Date(timestamp);
-    let hours = now.getHours();
-    let minutes = (now.getMinutes() < 10 ? "0" : "") + now.getMinutes();
-    return `${hours}:${minutes}`;
-  }
-
   function showWeather(response) {
-    setIsSubmitted(true);
     setWeather({
+      isSubmitted: true,
       currentCity: response.data.name,
       temperature: Math.round(response.data.main.temp),
       wind: Math.round(response.data.wind.speed * 3.6),
       humidity: response.data.main.humidity,
       description: response.data.weather[0].description,
       iconUrl: `https://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`,
+      date: new Date(response.data.dt * 1000),
     });
-    setDate(formatDate(response.data.dt * 1000));
 
     let mainDescription = response.data.weather[0].main;
     showProverb(mainDescription.toLowerCase());
@@ -199,7 +175,7 @@ export default function Weather() {
     </div>
   );
 
-  if (!isSubmitted) {
+  if (!weather.isSubmitted) {
     return <div className="Weather">{form}</div>;
   } else {
     return (
@@ -207,7 +183,7 @@ export default function Weather() {
         {form}
         <div>
           <h1>{weather.currentCity}</h1>
-          <p id="last-updated">Last updated: {date} </p>
+          <FormattedDate date={weather.date} />
           <h2>Now</h2>
           <div className="row">
             <div className="col">
