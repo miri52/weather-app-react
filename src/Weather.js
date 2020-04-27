@@ -1,78 +1,12 @@
 import React, { useState } from "react";
 import axios from "axios";
 import FormattedDate from "./FormattedDate";
+import Proverb from "./Proverb";
 import "./Weather.css";
 
 export default function Weather() {
   const [city, setCity] = useState("");
   const [weather, setWeather] = useState({ isSubmitted: false });
-  const [saying, setSaying] = useState("");
-  const [author, setAuthor] = useState("");
-
-  let proverbs = {
-    snow: {
-      saying: "No snowflake ever falls in the wrong place.",
-      author: "-Zen proverb",
-    },
-    rain: {
-      saying: "The sound of rain needs no translation.",
-      author: "-Zen proverb",
-    },
-    sun: {
-      saying: "Turn your face to the sun and the shadows fall behind you.",
-      author: "-Maori proverb",
-    },
-    clouds: {
-      saying: "A cloudy sky doesn't always cry rain.",
-      author: "-African proverb",
-    },
-    storm: {
-      saying: "A tree with strong roots laughs at storms.",
-      author: "-Malay Proverb",
-    },
-    mist: {
-      saying: "Words are the fog one has to see through.",
-      author: "-Zen proverb",
-    },
-    default: {
-      saying: "After bad weather comes good weather.",
-      author: "-Maltese Proverb",
-    },
-  };
-
-  function showProverb(mainDescription) {
-    switch (mainDescription) {
-      case "clouds":
-        setSaying(proverbs.clouds.saying);
-        setAuthor(proverbs.clouds.author);
-        break;
-      case "snow":
-        setSaying(proverbs.snow.saying);
-        setAuthor(proverbs.snow.author);
-        break;
-      case "rain":
-      case "drizzle":
-        setSaying(proverbs.rain.saying);
-        setAuthor(proverbs.rain.author);
-        break;
-      case "clear":
-        setSaying(proverbs.sun.saying);
-        setAuthor(proverbs.sun.author);
-        break;
-      case "thunderstorm":
-        setSaying(proverbs.storm.saying);
-        setAuthor(proverbs.storm.author);
-        break;
-      case "mist":
-      case "fog":
-        setSaying(proverbs.mist.saying);
-        setAuthor(proverbs.mist.author);
-        break;
-      default:
-        setSaying(proverbs.default.saying);
-        setAuthor(proverbs.default.author);
-    }
-  }
 
   function showWeather(response) {
     setWeather({
@@ -84,10 +18,8 @@ export default function Weather() {
       description: response.data.weather[0].description,
       iconUrl: `https://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`,
       date: new Date(response.data.dt * 1000),
+      weatherDescription: response.data.weather[0].main,
     });
-
-    let mainDescription = response.data.weather[0].main;
-    showProverb(mainDescription.toLowerCase());
   }
 
   let apiKey = "f39b4d69b61752ac1179fb7a3b6a8e55";
@@ -208,13 +140,7 @@ export default function Weather() {
               </div>
             </div>
             <div className="col">
-              <p className="proverb-section">
-                <span className="proverb">
-                  {saying}
-                  <br />
-                </span>
-                <span className="proverb-author">{author}</span>
-              </p>
+              <Proverb weatherDescription={weather.weatherDescription} />
             </div>
           </div>
           <div>

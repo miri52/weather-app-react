@@ -51,16 +51,6 @@ li::first-letter {
   width: 80px;
   height: 80px;
 }
-.proverb-section {
-  text-align: center;
-  font-size: 16px;
-  margin-right: 20px;
-}
-
-.proverb {
-  font-weight: 600;
-  font-size: 20px;
-}
 
 .time {
   font-weight: bold;
