@@ -15,7 +15,7 @@ export default function FormattedDate(props) {
   let minutes =
     (props.date.getMinutes() < 10 ? "0" : "") + props.date.getMinutes();
   return (
-    <div>
+    <div className="FormattedDate">
       Last updated: {day} {hours}:{minutes}
     </div>
   );

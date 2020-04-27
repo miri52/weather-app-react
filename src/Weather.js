@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import FormattedDate from "./FormattedDate";
-import Proverb from "./Proverb";
+import WeatherInfo from "./WeatherInfo";
 import "./Weather.css";
 
 export default function Weather() {
@@ -96,68 +95,13 @@ export default function Weather() {
     </div>
   );
 
-  let forecast = (
-    <div className="col next-hours">
-      <h3 className="time">15:00</h3>
-      <img className="weather-icons" src="" alt="" />
-      <div className="temperature">
-        <span className="max-temperature">7°</span>
-        <span className="min-temperature">5°</span>
-      </div>
-    </div>
-  );
-
   if (!weather.isSubmitted) {
     return <div className="Weather">{form}</div>;
   } else {
     return (
       <div className="Weather">
         {form}
-        <div>
-          <h1>{weather.currentCity}</h1>
-          <FormattedDate date={weather.date} />
-          <h2>Now</h2>
-          <div className="row">
-            <div className="col">
-              <div className="clearfix">
-                <img
-                  className="float-left weather-icon-now"
-                  src={weather.iconUrl}
-                  alt={weather.description}
-                />
-                <div className="float-left">
-                  <strong className="current-temperature">
-                    {weather.temperature}
-                  </strong>
-                  <span className="temperature-scale" id="celsius-scale">
-                    °C
-                  </span>
-                  <span> | </span>
-                  <span className="temperature-scale" id="fahrenheit-scale">
-                    °F
-                  </span>
-                </div>
-              </div>
-            </div>
-            <div className="col">
-              <Proverb weatherDescription={weather.weatherDescription} />
-            </div>
-          </div>
-          <div>
-            <ul>
-              <li id="weather-description">{weather.description}</li>
-              <li>Wind: {weather.wind} km/h</li>
-              <li>Humidity: {weather.humidity}%</li>
-            </ul>
-          </div>
-          <div className="row" id="forecast">
-            {forecast}
-            {forecast}
-            {forecast}
-            {forecast}
-            {forecast}
-          </div>
-        </div>
+        <WeatherInfo info={weather} />
       </div>
     );
   }
