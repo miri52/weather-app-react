@@ -1,6 +1,7 @@
 import React from "react";
 import FormattedDate from "./FormattedDate";
 import Proverb from "./Proverb";
+import CurrentTemperature from "./CurrentTemperature";
 
 export default function WeatherInfo(props) {
   let forecast = (
@@ -28,16 +29,7 @@ export default function WeatherInfo(props) {
               alt={props.info.description}
             />
             <div className="float-left">
-              <strong className="current-temperature">
-                {props.info.temperature}
-              </strong>
-              <span className="temperature-scale" id="celsius-scale">
-                °C
-              </span>
-              <span> | </span>
-              <span className="temperature-scale" id="fahrenheit-scale">
-                °F
-              </span>
+              <CurrentTemperature celsiusTemperature={props.info.temperature} />
             </div>
           </div>
         </div>

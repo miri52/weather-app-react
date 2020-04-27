@@ -33,11 +33,11 @@ export default function Proverb(props) {
       author: "-Korean proverb",
     },
     smoke: {
-      saying: "Smoke never rises without fire",
+      saying: "Smoke never rises without fire.",
       author: "-Haitian proverb",
     },
     sand: {
-      saying: "Knowledge without wisdom is like water in the sand",
+      saying: "Knowledge without wisdom is like water in the sand.",
       author: "-Guinean proverb ",
     },
   };

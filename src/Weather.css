@@ -39,11 +39,11 @@ li::first-letter {
   padding-left: 20px;
 }
 
-#celsius-scale {
+.styled-scale {
   font-weight: bold;
 }
 
-#fahrenheit-scale {
+.unstyled-scale {
   color: gray;
 }
 
