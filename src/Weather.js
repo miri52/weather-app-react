@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
-import WeatherInfo from "./WeatherInfo";
+import CurrentWeatherInfo from "./CurrentWeatherInfo";
+import WeatherForecast from "./WeatherForecast";
 import "./Weather.css";
 
 export default function Weather() {
@@ -21,7 +22,7 @@ export default function Weather() {
     });
   }
 
-  let apiKey = "f39b4d69b61752ac1179fb7a3b6a8e55";
+  let apiKey = "b35a38c8a0005068396b0b0ed86da57a";
   let apiUrl = "https://api.openweathermap.org/data/2.5/";
 
   function getCityApiUrl(cityInput) {
@@ -95,14 +96,15 @@ export default function Weather() {
     </div>
   );
 
-  if (!weather.isSubmitted) {
-    return <div className="Weather">{form}</div>;
-  } else {
+  if (weather.isSubmitted) {
     return (
       <div className="Weather">
         {form}
-        <WeatherInfo info={weather} />
+        <CurrentWeatherInfo info={weather} />
+        <WeatherForecast city={weather.currentCity} />
       </div>
     );
+  } else {
+    return <div className="Weather">{form}</div>;
   }
 }

@@ -3,20 +3,9 @@ import FormattedDate from "./FormattedDate";
 import Proverb from "./Proverb";
 import CurrentTemperature from "./CurrentTemperature";
 
-export default function WeatherInfo(props) {
-  let forecast = (
-    <div className="col next-hours">
-      <h3 className="time">15:00</h3>
-      <img className="weather-icons" src="" alt="" />
-      <div className="temperature">
-        <span className="max-temperature">7°</span>
-        <span className="min-temperature">5°</span>
-      </div>
-    </div>
-  );
-
+export default function CurrentWeatherInfo(props) {
   return (
-    <div className="WeatherInfo">
+    <div className="CurrentWeatherInfo">
       <h1>{props.info.currentCity}</h1>
       <FormattedDate date={props.info.date} />
       <h2>Now</h2>
@@ -43,13 +32,6 @@ export default function WeatherInfo(props) {
           <li>Wind: {props.info.wind} km/h</li>
           <li>Humidity: {props.info.humidity}%</li>
         </ul>
-      </div>
-      <div className="row" id="forecast">
-        {forecast}
-        {forecast}
-        {forecast}
-        {forecast}
-        {forecast}
       </div>
     </div>
   );
