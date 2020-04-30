@@ -20,6 +20,7 @@ export default function WeatherForecast(props) {
         <ForecastPreview data={forecast.list[2]} />
         <ForecastPreview data={forecast.list[3]} />
         <ForecastPreview data={forecast.list[4]} />
+        <ForecastPreview data={forecast.list[5]} />
       </div>
     );
   } else {
