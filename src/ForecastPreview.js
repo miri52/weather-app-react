@@ -12,7 +12,7 @@ export default function ForecastPreview(props) {
   }
 
   return (
-    <div className="ForecastPreview col-2 mr-auto">
+    <div className="ForecastPreview col-2">
       <h3 className="time">{formatHours(props.data.dt * 1000)}</h3>
       <img
         className="weather-icons"
