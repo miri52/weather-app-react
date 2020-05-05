@@ -24,6 +24,7 @@ export default function ForecastPreview(props) {
           {Math.round(props.data.main.temp_max)}°
         </span>
         <span className="min-temperature">
+          {" "}
           {Math.round(props.data.main.temp_min)}°
         </span>
       </div>
