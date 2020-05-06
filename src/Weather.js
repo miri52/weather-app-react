@@ -63,7 +63,7 @@ export default function Weather() {
 
   let form = (
     <div>
-      <form onSubmit={handleSubmit} id="search-form" className="float-left">
+      <form onSubmit={handleSubmit} className="float-left search-form">
         <div className="form-row align-items-center">
           <div className="col-auto">
             <input
