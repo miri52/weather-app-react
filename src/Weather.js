@@ -97,7 +97,6 @@ export default function Weather() {
   );
 
   if (weather.isSubmitted) {
-    console.log("Been here");
     return (
       <div className="Weather">
         {form}
